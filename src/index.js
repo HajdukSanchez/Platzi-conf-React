@@ -14,9 +14,9 @@ import ReactDOM from 'react-dom';
 // The first one is the type of element, the second are the properties and the third one are the elements inside
 const element1 = React.createElement(
   'a',
-  {href: 'https://platzi.com'},
+  { href: 'https://platzi.com' },
   'Hola soy el children'
-  ); // Element with CreateElement
+); // Element with CreateElement
 const element = <h1>Hello, Platzi badges</h1>; // Element with JXS
 const container = document.getElementById('app');
 
@@ -29,6 +29,6 @@ ReactDOM.render(element1, container);
 // const jsx = <h1>Hola soy {name}</h1>
 // ReactDOM.render(jsx, container);
 
-const sum  = 3 + 3;
+const sum = 3 + 3;
 const jsx = <h1>Hola soy {sum}</h1>
 ReactDOM.render(jsx, container);
