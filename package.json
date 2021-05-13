@@ -12,7 +12,9 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "bootstrap": "^5.0.0",
+    "bootstrap": "^5.0.1",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-scripts": "2.1.5"
