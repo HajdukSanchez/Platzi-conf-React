@@ -20,16 +20,16 @@ class BadgeForm extends Component {
     console.log('CLicked');
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submit');
-  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('Submit');
+  // }
 
   render() {
     return (
       <div>
         <h1>New Attendant</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.onSubmit}>
           <div className="form-group mb-3">
             <label>First Name</label>
             <input className="form-control" onChange={this.props.onChange} type="text" name="firstName" value={this.props.formValues.firstName}></input>
