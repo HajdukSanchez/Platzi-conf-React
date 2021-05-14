@@ -6,11 +6,10 @@ import './global.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-import BadgeNew from './pages/BadgeNew';
-import Badges from './pages/Badges';
+import App from './components/App'
 
 
 const container = document.getElementById('app');
 
 // With this </> we can say that this is going to be an autoclose element
-ReactDOM.render(<Badges />, container);
+ReactDOM.render(<App />, container);

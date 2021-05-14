@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import './styles/Badges.css';
 import confLogo from '../images/badge-header.svg';
 import BadgesList from '../components/BadgesList';
+import { Link } from 'react-router-dom';
 
 class Badges extends Component {
 
@@ -12,7 +13,7 @@ class Badges extends Component {
     data: [
       {
         id: "2de30c42-9deb-40fc-a41f-05e62b5939a7",
-        irstName: "Freda",
+        firstName: "Freda",
         lastName: "Grady",
         email: "Leann_Berge@gmail.com",
         jobTitle: "Legacy Brand Director",
@@ -53,7 +54,7 @@ class Badges extends Component {
         </div>
         <div className="Badges__container">
           <div className="Badges__buttons">
-            <a href="/badges/new" className="btn btn-primary">New Badges</a>
+            <Link to="/badges/new" className="btn btn-primary">New Badges</Link>
           </div>
           <div className="Badges__list">
             <div className="Badges__container">
