@@ -12,9 +12,9 @@ function App() {
       <Layout>
         <Switch>
           <Route exact path="/home" component={Home} />
-          <Redirect from="/" to="/home" />
           <Route exact path="/badges" component={Badges} />
           <Route exact path="/badges/new" component={BadgeNew} />
+          <Redirect excat from="/" to="/home" />
           <Route exact component={NotFound} />
         </Switch>
       </Layout>
