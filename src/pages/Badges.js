@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import api from './api';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
+import MiniLoader from '../components/MiniLoader';
 
 class Badges extends Component {
 
@@ -81,6 +82,9 @@ class Badges extends Component {
 
   componentDidMount() {
     this.fetchData();
+    this.intervalId = setInterval(() => {
+      this.fetchData(); // Every 5 seconds this function is going to be called
+    }, 20000);
   }
 
   async fetchData() {
@@ -103,9 +107,13 @@ class Badges extends Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
   render() {
     // console.log('2/4. Render');
-    if (this.state.loading) {
+    if (this.state.loading && !this.state.data) {
       return <PageLoading />;
     }
     if (this.state.error) {
@@ -129,6 +137,7 @@ class Badges extends Component {
               <BadgesList badges={this.state.data} />
             </div>
           </div>
+          {this.state.loading && <MiniLoader />}
         </div>
       </Fragment>
     );
