@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import confLogo from '../images/badge-header.svg';
 import './styles/Badge.css';
 
 // We create a component
-class Badge extends React.Component {
+class Badge extends Component {
   render() {
     return (
       <div className="Badge">
