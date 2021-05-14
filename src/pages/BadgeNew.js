@@ -8,11 +8,14 @@ import BadgeForm from '../components/BadgeForm';
 
 import header from '../images/platziconf-logo.svg';
 import api from './api';
+import PageLoading from '../components/PageLoading';
 
 
 class BadgeNew extends React.Component {
 
   state = {
+    loading: false, // Is going to represent the information send
+    error: null,
     form: {
       firstName: '',
       lastName: '',
@@ -39,15 +42,16 @@ class BadgeNew extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    this.setState = {
+    this.setState({
       loading: true,
       error: null
-    }
+    });
     try {
       await api.badges.create(this.state.form);
       this.setState({
         loading: false,
       });
+      this.props.history.push('/badges'); // If everithing is ok, we redirect the user to badges
     } catch (error) {
       this.setState({
         loading: false,
@@ -57,6 +61,9 @@ class BadgeNew extends React.Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return <PageLoading />;
+    }
     return (
       <Fragment>
         <div className="BadgeNew__hero">
@@ -71,7 +78,6 @@ class BadgeNew extends React.Component {
                 twitter={this.state.form.twitter || 'TWITTER'}
                 jobTitle={this.state.form.jobTitle || 'JOB_TITLE'}
                 email={this.state.form.email || 'EMAIL'}
-                avatarUrl="http:\/\/1.gravatar.com\/avatar\/b8f08ff3f8554eb4714b95e7aeaf3286"
               />
             </div>
             <div className="col-6">
@@ -79,6 +85,7 @@ class BadgeNew extends React.Component {
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}
                 formValues={this.state.form}
+                error={this.state.form.error}
               />
             </div>
           </div>

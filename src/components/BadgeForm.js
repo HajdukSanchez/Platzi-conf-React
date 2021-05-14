@@ -17,7 +17,7 @@ class BadgeForm extends Component {
   // }
 
   handleClick = () => {
-    console.log('CLicked');
+    // console.log('CLicked');
   }
 
   // handleSubmit = (e) => {
@@ -52,6 +52,11 @@ class BadgeForm extends Component {
           </div>
           <div className="form-group mb-3">
             <button className="btn btn-primary" onClick={this.handleClick} type="submit">Save</button>
+          </div>
+          <div className="form-group mb-3">
+            {this.props.error && (
+              <p className="text-danger">{this.props.error.message}</p>
+            )}
           </div>
         </form>
       </div>
