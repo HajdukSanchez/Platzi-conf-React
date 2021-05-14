@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import './styles/BadgeDetails.css';
 import { Link } from 'react-router-dom';
 import Badge from '../components/Badge';
 import confLogo from '../images/platziconf-logo.svg';
+import DeleteBadgeModal from '../components/DeleteBadgeModal';
+import Modal from '../components/Modal';
 
 
 export default function BadgeDetails(props) {
@@ -40,9 +41,8 @@ export default function BadgeDetails(props) {
                 <Link className="btn btn-primary mb-3" to={`/badges/${badge.id}/edit`}>Edit</Link>
               </div>
               <div>
-                <button className="btn btn-danger">Delete</button>
-                {/* {ReactDOM.createPortal(__QUË__, __DONDE__)} */}
-                {ReactDOM.createPortal(<h1>Hola</h1>, document.getElementById('modal'))}
+                <button onClick={props.onOpenModal} className="btn btn-danger">Delete</button>
+                <DeleteBadgeModal isOpen={props.modalIsOpen} onClose={props.onCloseModal} onOpen={props.onOpenModal} onDeleteBadge={props.onDeleteBadge}/>
               </div>
             </div>
           </div>
