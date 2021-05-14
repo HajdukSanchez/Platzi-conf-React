@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import './styles/BadgeNew.css';
+import './styles/BadgeEdit.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Badge from '../components/Badge';
@@ -11,10 +12,10 @@ import api from './api';
 import PageLoading from '../components/PageLoading';
 
 
-class BadgeNew extends React.Component {
+class BadgeEdit extends React.Component {
 
   state = {
-    loading: false, // Is going to represent the information send
+    loading: false,
     error: null,
     form: {
       firstName: '',
@@ -26,16 +27,10 @@ class BadgeNew extends React.Component {
   }
 
   handleChange = (e) => {
-    // We create a copy of form for prevent overwriting
-    // const nextForm = this.state.form;
-    // nextForm[e.target.className.name] = e.target.value;
-    // Those elements are going to get in the BADGEFORM
     this.setState({
       form: {
-        // form: nextForm
-        // Another way to prevent the overwriting in the form
-        ...this.state.form, // We crate a copy
-        [e.target.name]: e.target.value, // We add a new value overwriting this specific value
+        ...this.state.form,
+        [e.target.name]: e.target.value,
       }
     });
   }
@@ -47,11 +42,38 @@ class BadgeNew extends React.Component {
       error: null
     });
     try {
-      await api.badges.create(this.state.form);
+      await api.badges.update(this.props.match.params.id, this.state.form);
       this.setState({
         loading: false,
       });
-      this.props.history.push('/badges'); // If everithing is ok, we redirect the user to badges
+      this.props.history.push('/badges');
+    } catch (error) {
+      this.setState({
+        loading: false,
+        error: error
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async e => {
+    this.setState({
+      loading: true,
+      error: null
+    });
+    try {
+      const data = await api.badges.read(
+        // MATCH is a property that props have
+        // Id is the name that we pass to the component
+        this.props.match.params.id
+      );
+      this.setState({
+        loading: false,
+        form: data
+      });
     } catch (error) {
       this.setState({
         loading: false,
@@ -66,8 +88,8 @@ class BadgeNew extends React.Component {
     }
     return (
       <Fragment>
-        <div className="BadgeNew__hero">
-          <img className="BadgeNew__hero-image" src={header} alt="logo" />
+        <div className="BadgeEdit__hero">
+          <img className="BadgeEdit__hero-image" src={header} alt="logo" />
         </div>
         <div className="container">
           <div className="row">
@@ -82,7 +104,7 @@ class BadgeNew extends React.Component {
             </div>
             <div className="col-6">
               <BadgeForm
-                title={'New Attendant'}
+                title={'Edit Attendant'}
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}
                 formValues={this.state.form}
@@ -96,4 +118,4 @@ class BadgeNew extends React.Component {
   }
 }
 
-export default BadgeNew;
+export default BadgeEdit;
