@@ -46,9 +46,9 @@ export default function BadgeDetails(props) {
             <h2>Actions</h2>
             <div>
               <div>
-                <button className="btn btn-primary" onClick={() => {
+                {/* <button className="btn btn-primary" onClick={() => {
                   setCount(count + 1);
-                }}>Increase count: {count}</button>
+                }}>Increase count: {count}</button> */}
                 <Link className="btn btn-primary mb-3" to={`/badges/${badge.id}/edit`}>Edit</Link>
               </div>
               <div>
